@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardUtilities", "CardUtilities\CardUtilities.csproj", "{3214EB31-F1AA-4416-9C60-CC81B12C51B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerMartinez", "PokerMartinez\PokerMartinez.csproj", "{5750C84A-5E03-4913-9545-ABF103030796}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3214EB31-F1AA-4416-9C60-CC81B12C51B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3214EB31-F1AA-4416-9C60-CC81B12C51B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3214EB31-F1AA-4416-9C60-CC81B12C51B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3214EB31-F1AA-4416-9C60-CC81B12C51B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5750C84A-5E03-4913-9545-ABF103030796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5750C84A-5E03-4913-9545-ABF103030796}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5750C84A-5E03-4913-9545-ABF103030796}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5750C84A-5E03-4913-9545-ABF103030796}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {86EA171A-0F71-4C37-A09E-67B1552D6DEC}
+	EndGlobalSection
+EndGlobal
