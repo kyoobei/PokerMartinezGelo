@@ -30,6 +30,8 @@ namespace CardUtilities
         {
             char[] suitsCharacter = new char[] {'C', 'S', 'H', 'D'};
             char[] faceCardsCharacter = new char[] {'J', 'Q', 'K', 'A'};
+            ///TODO:
+            /// the error is 10H because its 3 characters but it should be valid
             foreach(var card in cards) 
             {
                 if(card.Length != 2)
@@ -43,7 +45,7 @@ namespace CardUtilities
                 if (Char.IsDigit(tempHolder, 0))
                 {
                     int value = int.Parse(tempHolder[0].ToString());
-                    if ((value < 2) || (value >= 11))
+                    if ((value < 2) || (value > 10))
                     {
                         return false;
                     }
