@@ -16,13 +16,12 @@ namespace PokerMartinez
             {
                 Console.Write("Enter a players name: ");
                 string playerName = Console.ReadLine();
-                Console.Write("Enter player card (ex: 2H 6D AS 4S 3H): ");
-                string playerCard = Console.ReadLine();
+                string playerCard = string.Empty;
+                DeclareCard(ref playerCard);
                 while(cardValidator.IsValid(playerCard, out string errorMessage) != true) 
                 {
                     Console.WriteLine("Error: " + errorMessage);
-                    Console.Write("Enter player card (ex: 2H 6D AS 4S 3H): ");
-                    playerCard = Console.ReadLine();
+                    DeclareCard(ref playerCard);
                 }
                 //add to list for later should change this to some default class from library or
                 //this area
@@ -32,6 +31,11 @@ namespace PokerMartinez
                     isTerminated = true;
                 }
             }
+        }
+        private static void DeclareCard(ref string playerCard) 
+        {
+            Console.Write("Enter player card (ex: 2H 6D AS 4S 3H): ");
+            playerCard = Console.ReadLine();
         }
         private static void ShowIntroductions()
         {

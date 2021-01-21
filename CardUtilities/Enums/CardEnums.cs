@@ -23,9 +23,9 @@ namespace CardUtilities.Enums
     }
     public enum FaceCard 
     {
-        J = 10,
-        Q = 11,
-        K = 12,
-        A = 13
+        Jack = 10,
+        Queen = 11,
+        King = 12,
+        Ace = 13
     }
 }
