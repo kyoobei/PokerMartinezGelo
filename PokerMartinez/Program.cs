@@ -45,6 +45,8 @@ namespace PokerMartinez
                 "2. If there are more than 5 valid cards, then the system will only get the first 5 cards. \n" +
                 "3. The cards or hand are evaluated by rank (2 is lowest while Ace is the highest). Suit doesn't matter in ranking.\n" +
                 "4. There can be multiple winners if the highest hand has identical values with other player hands. \n" +
+                "For Card Value Progression: \n" +
+                "2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A \n" +
                 "For Suits:\n" +
                 "C = Clover, S = Spade, H = Hearts, D = Diamond\n" +
                 "Example:\n" +
