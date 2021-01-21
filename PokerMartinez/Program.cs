@@ -8,13 +8,25 @@ namespace PokerMartinez
         
         static void Main(string[] args)
         {
+            CardValidator cardValidator = new CardValidator();
             bool isTerminated = false;
-            //Dictionary<string, string> playerListDict = new Dictionary<string, string>();
-            ShowIntroductions();
-            
+            Dictionary<string, string> playerListDict = new Dictionary<string, string>();
+            ShowIntroductions();   
             while (!isTerminated)
             {
-                Console.WriteLine("Press Esc to end");
+                Console.Write("Enter a players name: ");
+                string playerName = Console.ReadLine();
+                Console.Write("Enter player card (ex: 2H 6D AS 4S 3H): ");
+                string playerCard = Console.ReadLine();
+                while(cardValidator.IsValid(playerCard, out string errorMessage) != true) 
+                {
+                    Console.WriteLine("Error: " + errorMessage);
+                    Console.Write("Enter player card (ex: 2H 6D AS 4S 3H): ");
+                    playerCard = Console.ReadLine();
+                }
+                //add to list for later should change this to some default class from library or
+                //this area
+                playerListDict.Add(playerName, playerCard);
                 if (Console.ReadKey(true).Key == ConsoleKey.Escape)
                 {
                     isTerminated = true;
