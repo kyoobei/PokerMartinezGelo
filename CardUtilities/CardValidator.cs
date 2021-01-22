@@ -8,7 +8,7 @@ namespace CardUtilities
     {
         private const int MIN_CARD = 5;
         private const string PATTERN_CARD = @"\b([2-9]|10|[JQKA])[CDHS]\b";
-
+        private List<string> m_currentCardList = new List<string>();
         public bool IsValid(string cardValue, out string errorMessage) 
         {
             if (cardValue.Equals(string.Empty)) 
@@ -18,8 +18,8 @@ namespace CardUtilities
             }
             else 
             {
+                string cardHolder = cardValue.ToUpper();
                 List<string> validCardList = new List<string>();
-                string cardHolder = cardValue.ToUpper();              
                 var cardcheck = Regex.Matches(cardHolder, PATTERN_CARD);
                 foreach (Match match in cardcheck)
                 {
@@ -30,12 +30,25 @@ namespace CardUtilities
                 }
                 if(validCardList.Count >= MIN_CARD) 
                 {
+                    for(int i = 0; i < validCardList.Count; i++) 
+                    {
+                        if (m_currentCardList.Contains(validCardList[i])) 
+                        {
+                            errorMessage = CardsAreNotUniqueError();
+                            return false;
+                        }
+                    }
+                    m_currentCardList.AddRange(validCardList);
                     errorMessage = string.Empty;
                     return true;
                 }
             }
             errorMessage = NotEnoughCardsError();
             return false;
+        }
+        private string CardsAreNotUniqueError() 
+        {
+            return "The cards at hand are not unique.";
         }
         private string NotEnoughCardsError()
         {

@@ -11,24 +11,29 @@ namespace PokerMartinez
             CardValidator cardValidator = new CardValidator();
             CardBuilder cardBuilder = new CardBuilder();
             bool isTerminated = false;
-           
+            int currentNumberOfPlayers = 0;
             ShowIntroductions();   
             while (!isTerminated)
             {
-                Console.Write("Enter the player name: ");
+                Console.Write("\nEnter the player name: ");
                 string playerName = Console.ReadLine();
                 string playerCard = string.Empty;
                 DeclarePlayerCard(playerName, ref playerCard);
                 while(cardValidator.IsValid(playerCard, out string errorMessage) != true) 
                 {
-                    Console.WriteLine("Error: " + errorMessage);
+                    Console.WriteLine("Error: {0}\n",errorMessage);
                     DeclarePlayerCard(playerName, ref playerCard);
                 }
                 List<Card> cardCollection = new List<Card>(cardBuilder.Build(playerCard));
-
-                if (Console.ReadKey(true).Key == ConsoleKey.Escape)
+                currentNumberOfPlayers++;
+               
+                if (currentNumberOfPlayers > 1)
                 {
-                    isTerminated = true;
+                    Console.WriteLine("\nPress ANY KEY to add more players or ESC to exit\n");
+                    if (Console.ReadKey(true).Key == ConsoleKey.Escape)
+                    {
+                        isTerminated = true;
+                    }
                 }
             }
         }
@@ -40,13 +45,13 @@ namespace PokerMartinez
         private static void ShowIntroductions()
         {
             string intro = string.Format
-                ("Assumptions\n" +
-                "1. Each player will only have 5 valid cards on their hands. \n" +
-                "2. If there are more than 5 valid cards, then the system will only get the first 5 cards. \n" +
+                ("Assumptions\n\n" +
+                "1. Each player will only have 5 unique valid cards on their hands. \n" +
+                "2. If there are more than 5 cards, then the system will only get the first 5 cards. \n" +
                 "3. The cards or hand are evaluated by rank (2 is lowest while Ace is the highest). Suit doesn't matter in ranking.\n" +
-                "4. There can be multiple winners if the highest hand has identical values with other player hands. \n" +
+                "4. There can be multiple winners if the highest hand is identical to other player hands. \n\n" +
                 "For Card Value Progression: \n" +
-                "2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A \n" +
+                "2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A \n\n" +
                 "For Suits:\n" +
                 "C = Clover, S = Spade, H = Hearts, D = Diamond\n" +
                 "Example:\n" +
