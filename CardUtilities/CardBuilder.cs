@@ -1,15 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using CardUtilities.Enums;
+
 namespace CardUtilities
 {
     public class CardBuilder
     {
         public List<Card> Build(string playerCardCollection) 
         {
-            string cardCollection = playerCardCollection.ToUpper();
             List<Card> cardsList = new List<Card>();
+            CreateCards(playerCardCollection, ref cardsList);
+            //rearrange them from highest to lowest
+            ChangeListToDescendingByValue(ref cardsList);
+            //rearrange them from the most number of pairs to lowest
+            //if there is a pair
+            ChangeListToDescendingByPairs(ref cardsList);
+
+            return cardsList;
+        }
+        private void CreateCards(string playerCardCollection,
+            ref List<Card> createdCards) 
+        {
+            string cardCollection = playerCardCollection.ToUpper();
             List<int> cardsValueList = new List<int>();
             List<Suits> cardsSuitList = new List<Suits>();
             var cardValueMatch = Regex.Matches(cardCollection, Constants.PATTERN_VALUE);
@@ -65,9 +78,36 @@ namespace CardUtilities
             for (int i = 0; i < Constants.MIN_CARD; i++)
             {
                 Card newCard = new Card(cardsSuitList[i], cardsValueList[i]);
-                cardsList.Add(newCard);
+                createdCards.Add(newCard);
             }
-            return cardsList;
+        }
+        private void ChangeListToDescendingByValue(ref List<Card> cardsList)
+        {
+            cardsList.Sort((cardsA, cardsB) => cardsA.Value.CompareTo(cardsB.Value));
+            cardsList.Reverse();
+        }
+        private void ChangeListToDescendingByPairs(ref List<Card> cardsList)
+        {
+            List<Card> temporaryHolder = new List<Card>();
+            foreach (var group in cardsList.GroupBy(cards => cards.Value))
+            {
+                if (group.Count() >= 2)
+                {
+                    temporaryHolder.AddRange(group.ToList());
+                }
+            }
+            if (temporaryHolder.Count > 0)
+            {
+                List<Card> temporaryPairs = new List<Card>(cardsList);
+                var sortedGroup = temporaryPairs.GroupBy(card => card.Value)
+                    .OrderByDescending(card => card.Count());
+                cardsList.Clear();
+                foreach (var group in sortedGroup)
+                {
+                    List<Card> currentCardGroup = group.ToList();
+                    cardsList.AddRange(currentCardGroup);
+                }
+            }
         }
     }
 }

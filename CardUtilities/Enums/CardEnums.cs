@@ -8,8 +8,8 @@ namespace CardUtilities.Enums
         TwoPair,
         ThreeOfAKind,
         Straight,
-        FullHouse,
         Flush,
+        FullHouse,
         FourOfAKind,
         StraightFlush,
         RoyalFlush

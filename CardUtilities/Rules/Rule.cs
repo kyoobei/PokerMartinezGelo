@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using CardUtilities.Enums;
 
 namespace CardUtilities.Rules
 {
-    public class Rule
+    public abstract class Rule
     {
+        public abstract CardHand GetHand();
+        public abstract bool ContainsHand(List<Card> cardsList);
     }
 }
