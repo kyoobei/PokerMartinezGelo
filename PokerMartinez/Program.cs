@@ -14,14 +14,14 @@ namespace PokerMartinez
             ShowIntroductions();   
             while (!isTerminated)
             {
-                Console.Write("Enter a players name: ");
+                Console.Write("Enter the player name: ");
                 string playerName = Console.ReadLine();
                 string playerCard = string.Empty;
-                DeclareCard(ref playerCard);
+                DeclarePlayerCard(playerName, ref playerCard);
                 while(cardValidator.IsValid(playerCard, out string errorMessage) != true) 
                 {
                     Console.WriteLine("Error: " + errorMessage);
-                    DeclareCard(ref playerCard);
+                    DeclarePlayerCard(playerName, ref playerCard);
                 }
                 //add to list for later should change this to some default class from library or
                 //this area
@@ -32,10 +32,9 @@ namespace PokerMartinez
                 }
             }
         }
-        private static void DeclareCard(ref string playerCard) 
+        private static void DeclarePlayerCard(string playerName, ref string playerCard) 
         {
-            Console.Write("Enter player card (ex: 2H 6D AS 4S 3H): ");
-            playerCard = Console.ReadLine();
+            Console.Write("Enter {0}'s card (ex: 2H 6D AS 4S 3H): ", playerName);
         }
         private static void ShowIntroductions()
         {

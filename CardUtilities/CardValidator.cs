@@ -1,80 +1,49 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 namespace CardUtilities
 {
     public class CardValidator
     {
+        private const int MIN_CARD = 5;
+        private const string PATTERN_CARD = @"\b([2-9]|10|[JQKA])[CDHS]\b";
+
         public bool IsValid(string cardValue, out string errorMessage) 
         {
-            char delimiter = ' ';
-            string cardHolder = cardValue.ToUpper();
-            string[] cards = cardHolder.Split(delimiter);
-            if(IsCardLengthEnough(cards))
+            if (cardValue.Equals(string.Empty)) 
             {
-                if (!IsEachCardAtHandValid(cards))
+                errorMessage = NoCardsError();
+                return false;
+            }
+            else 
+            {
+                List<string> validCardList = new List<string>();
+                string cardHolder = cardValue.ToUpper();              
+                var cardcheck = Regex.Matches(cardHolder, PATTERN_CARD);
+                foreach (Match match in cardcheck)
                 {
-                    errorMessage = CardsAreNotValidError();
-                    return false;
+                    if (!validCardList.Contains(match.Value))
+                    {
+                        validCardList.Add(match.Value);
+                    }
                 }
-                errorMessage = string.Empty;
-                return true;
+                if(validCardList.Count >= MIN_CARD) 
+                {
+                    errorMessage = string.Empty;
+                    return true;
+                }
             }
             errorMessage = NotEnoughCardsError();
             return false;
         }
-        private bool IsCardLengthEnough(string[] cards) 
-        {
-            return (cards.Length >= 5);
-        }
-        private bool IsEachCardAtHandValid(string[] cards) 
-        {
-            char[] suitsCharacter = new char[] {'C', 'S', 'H', 'D'};
-            char[] faceCardsCharacter = new char[] {'J', 'Q', 'K', 'A'};
-            ///TODO:
-            /// the error is 10H because its 3 characters but it should be valid
-            foreach(var card in cards) 
-            {
-                if(card.Length != 2)
-                {
-                    return false;
-                }
-            }
-            for(int i = 0; i < cards.Length; i++) 
-            {
-                string tempHolder = cards[i];
-                if (Char.IsDigit(tempHolder, 0))
-                {
-                    int value = int.Parse(tempHolder[0].ToString());
-                    if ((value < 2) || (value > 10))
-                    {
-                        return false;
-                    }
-                    if (Array.IndexOf(suitsCharacter, tempHolder[1]) <= -1)
-                    {
-                        return false;
-                    }
-                }
-                else 
-                {
-                    if(Array.IndexOf(faceCardsCharacter, tempHolder[0]) <= -1)
-                    {
-                        return false;
-                    }
-                    if (Array.IndexOf(suitsCharacter, tempHolder[1]) <= -1)
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
         private string NotEnoughCardsError()
         {
-            return "The number of cards is not enough";
+            return "The number of cards is not enough or cards are invalid.";
         }
-        private string CardsAreNotValidError() 
+        private string NoCardsError() 
         {
-            return "Some of the players cards are not valid";
+            return "There are no cards detected.";
         }
     }
 }
