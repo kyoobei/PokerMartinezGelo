@@ -6,16 +6,14 @@ namespace CardUtilities
 {
     public class CardBuilder
     {
-        private const string PATTERN_VALUE = @"\b([2-9]|10|[JQKA])";
-        private const string PATTERN_SUIT = @"[CDHS]\b";
         public List<Card> Build(string playerCardCollection) 
         {
             string cardCollection = playerCardCollection.ToUpper();
             List<Card> cardsList = new List<Card>();
             List<int> cardsValueList = new List<int>();
             List<Suits> cardsSuitList = new List<Suits>();
-            var cardValueMatch = Regex.Matches(cardCollection, PATTERN_VALUE);
-            var cardSuitMatch = Regex.Matches(cardCollection, PATTERN_SUIT);
+            var cardValueMatch = Regex.Matches(cardCollection, Constants.PATTERN_VALUE);
+            var cardSuitMatch = Regex.Matches(cardCollection, Constants.PATTERN_SUIT);
             foreach (Match match in cardValueMatch)
             {
                 int value = 0;
@@ -64,7 +62,7 @@ namespace CardUtilities
                     cardsSuitList.Add(Suits.Diamond);
                 }
             }
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < Constants.MIN_CARD; i++)
             {
                 Card newCard = new Card(cardsSuitList[i], cardsValueList[i]);
                 cardsList.Add(newCard);

@@ -6,8 +6,6 @@ namespace CardUtilities
 {
     public class CardValidator
     {
-        private const int MIN_CARD = 5;
-        private const string PATTERN_CARD = @"\b([2-9]|10|[JQKA])[CDHS]\b";
         private List<string> m_currentCardList = new List<string>();
         public bool IsValid(string cardValue, out string errorMessage) 
         {
@@ -20,7 +18,7 @@ namespace CardUtilities
             {
                 string cardHolder = cardValue.ToUpper();
                 List<string> validCardList = new List<string>();
-                var cardcheck = Regex.Matches(cardHolder, PATTERN_CARD);
+                var cardcheck = Regex.Matches(cardHolder, Constants.PATTERN_CARD);
                 foreach (Match match in cardcheck)
                 {
                     if (!validCardList.Contains(match.Value))
@@ -28,7 +26,7 @@ namespace CardUtilities
                         validCardList.Add(match.Value);
                     }
                 }
-                if(validCardList.Count >= MIN_CARD) 
+                if(validCardList.Count >= Constants.MIN_CARD) 
                 {
                     for(int i = 0; i < validCardList.Count; i++) 
                     {
