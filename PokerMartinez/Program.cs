@@ -34,13 +34,13 @@ namespace PokerMartinez
                 }
             }
             pokerGame.StartGame();
-            for(int i = 0; i < pokerGame.NumberOfPlayers; i++) 
+            Console.WriteLine("-------Results-------");
+            for (int i = 0; i < pokerGame.NumberOfPlayers; i++) 
             {
-                Console.WriteLine("Name: {0}", pokerGame.GetPlayerName(i));
-                Console.WriteLine("Cards: {0}", pokerGame.GetCardCollection(i));
-                Console.WriteLine("Hand: {0}\n", pokerGame.GetPlayerHand(i));
+                Console.WriteLine("{0}: {1} ({2})",pokerGame.GetPlayerName(i),
+                    pokerGame.GetCardCollection(i), pokerGame.GetPlayerHand(i));
             }
-            Console.WriteLine("-------Winner-------");
+            Console.WriteLine("\n-------Winner/s-------");
             for (int i = 0; i < pokerGame.GetWinners().Count; i++) 
             {
                 Console.WriteLine(pokerGame.GetWinners()[i]);
