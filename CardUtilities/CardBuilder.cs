@@ -5,7 +5,7 @@ using CardUtilities.Enums;
 
 namespace CardUtilities
 {
-    public class CardBuilder
+    class CardBuilder
     {
         public List<Card> Build(string playerCardCollection) 
         {

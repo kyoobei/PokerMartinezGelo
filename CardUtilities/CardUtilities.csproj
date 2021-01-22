@@ -43,9 +43,12 @@
   <ItemGroup>
     <Compile Include="Card.cs" />
     <Compile Include="CardBuilder.cs" />
+    <Compile Include="CardCheckingFactory.cs" />
     <Compile Include="CardValidator.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Enums\CardEnums.cs" />
+    <Compile Include="PokerGame.cs" />
+    <Compile Include="PokerPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rules\FlushRule.cs" />
     <Compile Include="Rules\FourOfAKindRule.cs" />

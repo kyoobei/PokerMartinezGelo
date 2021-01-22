@@ -8,7 +8,7 @@ namespace PokerMartinez
         static void Main(string[] args)
         {
             CardValidator cardValidator = new CardValidator();
-            CardBuilder cardBuilder = new CardBuilder();
+            PokerGame pokerGame = new PokerGame();
             bool isTerminated = false;
             int currentNumberOfPlayers = 0;
             ShowIntroductions();   
@@ -23,17 +23,31 @@ namespace PokerMartinez
                     Console.WriteLine("Error: {0}\n",errorMessage);
                     DeclarePlayerCard(playerName, ref playerCard);
                 }
-                List<Card> cardCollection = new List<Card>(cardBuilder.Build(playerCard));
+                pokerGame.AddPlayer(playerName, playerCard);
                 currentNumberOfPlayers++;    
                 if (currentNumberOfPlayers > 1)
                 {
-                    Console.WriteLine("\nPress ANY KEY to add more players or ESC to exit\n");
+                    Console.WriteLine("\nPress ANY KEY to add more players or ESC to start\n");
                     if (Console.ReadKey(true).Key == ConsoleKey.Escape)
                     {
                         isTerminated = true;
                     }
                 }
             }
+            pokerGame.StartGame();
+            for(int i = 0; i < pokerGame.NumberOfPlayers; i++) 
+            {
+                Console.WriteLine("Name: {0}", pokerGame.GetPlayerName(i));
+                Console.WriteLine("Cards: {0}", pokerGame.GetCardCollection(i));
+                Console.WriteLine("Hand: {0}\n", pokerGame.GetPlayerHand(i));
+            }
+            Console.WriteLine("-------Winner-------");
+            for (int i = 0; i < pokerGame.GetWinners().Count; i++) 
+            {
+                Console.WriteLine(pokerGame.GetWinners()[i]);
+            }
+            Console.WriteLine("\nPress ANY KEY to exit");
+            Console.ReadLine();
         }
         private static void DeclarePlayerCard(string playerName, ref string playerCard) 
         {
@@ -47,7 +61,7 @@ namespace PokerMartinez
                 "1. Each player will only have 5 unique valid cards on their hands. \n" +
                 "2. If there are more than 5 cards, then the system will only get the first 5 cards. \n" +
                 "3. The cards or hand are evaluated by rank (2 is lowest while Ace is the highest). Suit doesn't matter in ranking.\n" +
-                "4. There can be multiple winners if the highest hand is identical to other player hands. \n\n" +
+                "4. There can be multiple winners if the highest hand is identical to other player hands regardless of the suit. \n\n" +
                 "For Card Value Progression: \n" +
                 "2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A \n\n" +
                 "For Suits:\n" +
