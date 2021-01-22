@@ -24,8 +24,7 @@ namespace PokerMartinez
                     DeclarePlayerCard(playerName, ref playerCard);
                 }
                 List<Card> cardCollection = new List<Card>(cardBuilder.Build(playerCard));
-                currentNumberOfPlayers++;
-               
+                currentNumberOfPlayers++;    
                 if (currentNumberOfPlayers > 1)
                 {
                     Console.WriteLine("\nPress ANY KEY to add more players or ESC to exit\n");
