@@ -9,8 +9,9 @@ namespace PokerMartinez
         static void Main(string[] args)
         {
             CardValidator cardValidator = new CardValidator();
+            CardBuilder cardBuilder = new CardBuilder();
             bool isTerminated = false;
-            Dictionary<string, string> playerListDict = new Dictionary<string, string>();
+           
             ShowIntroductions();   
             while (!isTerminated)
             {
@@ -23,9 +24,8 @@ namespace PokerMartinez
                     Console.WriteLine("Error: " + errorMessage);
                     DeclarePlayerCard(playerName, ref playerCard);
                 }
-                //add to list for later should change this to some default class from library or
-                //this area
-                playerListDict.Add(playerName, playerCard);
+                List<Card> cardCollection = new List<Card>(cardBuilder.Build(playerCard));
+
                 if (Console.ReadKey(true).Key == ConsoleKey.Escape)
                 {
                     isTerminated = true;
@@ -35,6 +35,7 @@ namespace PokerMartinez
         private static void DeclarePlayerCard(string playerName, ref string playerCard) 
         {
             Console.Write("Enter {0}'s card (ex: 2H 6D AS 4S 3H): ", playerName);
+            playerCard = Console.ReadLine();
         }
         private static void ShowIntroductions()
         {
