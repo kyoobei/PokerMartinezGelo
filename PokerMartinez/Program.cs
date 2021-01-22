@@ -5,7 +5,6 @@ namespace PokerMartinez
 {
     class Program
     {
-        
         static void Main(string[] args)
         {
             CardValidator cardValidator = new CardValidator();
