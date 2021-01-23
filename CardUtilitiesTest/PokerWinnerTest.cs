@@ -30,11 +30,11 @@ namespace CardUtilitiesTest
         {
             PokerGame pokerGame = new PokerGame();
             string player1 = "Tester1";
-            string player1Cards = "2h 6d as 4s 3h"; //this is high card but should win
+            string player1Cards = "2h 2c as 4s 3h"; //this is high card but should win
             pokerGame.AddPlayer(player1, player1Cards);
 
             string player2 = "Tester2";
-            string player2Cards = "2d 5d kh 4h 3d"; //this is high card
+            string player2Cards = "2d 2s kh 4h 3d"; //this is high card
             pokerGame.AddPlayer(player2, player2Cards);
 
             pokerGame.StartGame();
