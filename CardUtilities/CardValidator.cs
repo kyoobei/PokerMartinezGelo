@@ -19,7 +19,8 @@ namespace CardUtilities
                 var cardcheck = Regex.Matches(cardHolder, Constants.PATTERN_CARD);
                 foreach (Match match in cardcheck)
                 {
-                    if (!validCardList.Contains(match.Value))
+                    if (!validCardList.Contains(match.Value) && 
+                        validCardList.Count != Constants.MIN_CARD)
                     {
                         validCardList.Add(match.Value);
                     }
