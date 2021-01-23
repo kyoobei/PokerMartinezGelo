@@ -44,6 +44,24 @@ namespace CardUtilitiesTest
             CollectionAssert.AreEqual(winnerListFromPokerClass, expectedWinner);
         }
         [TestMethod]
+        public void TestPlayersHasMoreCardsThanRequired()
+        {
+            PokerGame pokerGame = new PokerGame();
+            string player1 = "Tester1";
+            string player1Cards = "2h 2c as 4s 3h ah ad"; //this is high card but should win
+            pokerGame.AddPlayer(player1, player1Cards);
+
+            string player2 = "Tester2";
+            string player2Cards = "2d 2s kh 4h 3d 5d 6d 7d"; //this is high card
+            pokerGame.AddPlayer(player2, player2Cards);
+
+            pokerGame.StartGame();
+            List<string> expectedWinner = new List<string>();
+            expectedWinner.Add(player1);
+            List<string> winnerListFromPokerClass = pokerGame.GetWinners();
+            CollectionAssert.AreEqual(winnerListFromPokerClass, expectedWinner);
+        }
+        [TestMethod]
         public void TestBothPlayerWinSameHand()
         {
             PokerGame pokerGame = new PokerGame();

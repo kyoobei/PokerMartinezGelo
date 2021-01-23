@@ -57,10 +57,11 @@ namespace PokerMartinez
         {
             string intro = string.Format
                 ("Assumptions\n\n" +
-                "1. Each player will only have 5 unique valid cards on their hands. \n" +
-                "2. If there are more than 5 cards, then the system will only get the first 5 cards. \n" +
-                "3. The cards or hand are evaluated by rank (2 is lowest while Ace is the highest). Suit doesn't matter in ranking.\n" +
-                "4. There can be multiple winners if the highest hand is identical to other player hands regardless of the suit. \n\n" +
+                "1. Using the traditional high poker hand ranks \n" +
+                "2. Each player will only have 5 unique valid cards on their hands. \n" +
+                "3. If there are more than 5 cards, then the system will only get the first 5 cards. \n" +
+                "4. The cards or hand are evaluated by rank (2 is lowest while Ace is the highest). Suit doesn't matter in ranking.\n" +
+                "5. There can be multiple winners if the highest hand is identical to other player hands regardless of the suit. \n\n" +
                 "For Card Value Progression: \n" +
                 "2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A \n\n" +
                 "For Suits:\n" +
