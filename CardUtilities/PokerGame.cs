@@ -69,28 +69,42 @@ namespace CardUtilities
             if(temporaryWinners.Count > 1) 
             {
                 List<PokerPlayer> winners = new List<PokerPlayer>();
+                winners.Add(temporaryWinners[0]);
+                
                 for(int i = 0; i < temporaryWinners.Count; i++) 
                 {
-                    if (winners.Count <= 0)
-                    {
-                        winners.Add(temporaryWinners[i]);
-                    }
-                    else if (winners.Count > 0)
+                    if (i != 0 && !winners.Contains(temporaryWinners[i]))
                     {
                         for (int j = 0; j < winners[0].PlayerCards.Count; j++)
                         {
                             int currentPlayerValue = temporaryWinners[i].PlayerCards[j].Value;
-                            int compareValue = winners[0].PlayerCards[j].Value;
-                            if (currentPlayerValue > compareValue) 
+                            int prevWinnerValue = winners[0].PlayerCards[j].Value;
+                            if (currentPlayerValue > prevWinnerValue)
                             {
-                                winners.Clear();
+                                winners.RemoveAt(0);
                                 winners.Add(temporaryWinners[i]);
-                                continue;
+                                break;
                             }
-                            if(j == winners[0].PlayerCards.Count - 1) 
+                            else if(currentPlayerValue < prevWinnerValue) 
                             {
-                                //if at the end of count its still equal then add
-                                winners.Add(temporaryWinners[i]);   
+                                break;
+                            }
+                            if (j == winners[0].PlayerCards.Count - 1)
+                            {
+                                if (currentPlayerValue > prevWinnerValue)
+                                {
+                                    winners.RemoveAt(0);
+                                    winners.Add(temporaryWinners[i]);
+                                    break;
+                                }
+                                else if(currentPlayerValue < prevWinnerValue) 
+                                {
+                                    break;
+                                }
+                                else if (currentPlayerValue == prevWinnerValue)
+                                {
+                                    winners.Add(temporaryWinners[i]);
+                                }
                             }
                         }
                     }
