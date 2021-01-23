@@ -15,7 +15,7 @@ namespace CardUtilities
                 new FourOfAKindRule(),
                 new FullHouseRule(),
                 new FlushRule(),
-                new StraightFlushRule(),
+                new StraightRule(),
                 new ThreeOfAKindRule(),
                 new TwoPairRule(),
                 new OnePairRule(),

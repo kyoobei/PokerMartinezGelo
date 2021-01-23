@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardUtilities", "CardUtilit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerMartinez", "PokerMartinez\PokerMartinez.csproj", "{5750C84A-5E03-4913-9545-ABF103030796}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardUtilitiesTest", "CardUtilitiesTest\CardUtilitiesTest.csproj", "{8E500F37-E968-4F8F-BECD-8B0E4D9C5159}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5750C84A-5E03-4913-9545-ABF103030796}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5750C84A-5E03-4913-9545-ABF103030796}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5750C84A-5E03-4913-9545-ABF103030796}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E500F37-E968-4F8F-BECD-8B0E4D9C5159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E500F37-E968-4F8F-BECD-8B0E4D9C5159}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E500F37-E968-4F8F-BECD-8B0E4D9C5159}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E500F37-E968-4F8F-BECD-8B0E4D9C5159}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

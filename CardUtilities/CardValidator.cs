@@ -26,25 +26,38 @@ namespace CardUtilities
                 }
                 if(validCardList.Count >= Constants.MIN_CARD) 
                 {
+                    List<string> cardsNotUniqueList = new List<string>();
+                    string notUniqueConcatenate = string.Empty;
                     for(int i = 0; i < validCardList.Count; i++) 
                     {
                         if (m_currentCardList.Contains(validCardList[i])) 
                         {
-                            errorMessage = CardsAreNotUniqueError();
-                            return false;
+                            cardsNotUniqueList.Add(validCardList[i]);
                         }
                     }
-                    m_currentCardList.AddRange(validCardList);
-                    errorMessage = string.Empty;
-                    return true;
+                    if (cardsNotUniqueList.Count <= 0)
+                    {
+                        m_currentCardList.AddRange(validCardList);
+                        errorMessage = string.Empty;
+                        return true;
+                    }
+                    else 
+                    {
+                        for(int i = 0; i < cardsNotUniqueList.Count; i++) 
+                        {
+                            notUniqueConcatenate += string.Format(" {0}", cardsNotUniqueList[i]);
+                        }
+                        errorMessage = CardsAreNotUniqueError(notUniqueConcatenate);
+                        return false;
+                    }
                 }
             }
             errorMessage = NotEnoughCardsError();
             return false;
         }
-        private string CardsAreNotUniqueError() 
+        private string CardsAreNotUniqueError(string cardNotUnique) 
         {
-            return "The cards at hand are not unique.";
+            return string.Format("The card/s{0} at hand are not unique.", cardNotUnique);
         }
         private string NotEnoughCardsError()
         {
